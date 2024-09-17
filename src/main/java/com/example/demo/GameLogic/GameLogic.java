@@ -10,6 +10,7 @@ public class GameLogic {
     protected final int[][] board;
     protected static final int SIZE = 4;
 
+
     public GameLogic() {
         board = new int[SIZE][SIZE];
         spawnTile();
@@ -71,20 +72,22 @@ public class GameLogic {
         }
     }
 
+
     // Method to move and merge tiles to the left
     public void moveLeft() {
-        int[][] copyboard = board;
+        int[][] copyboard = board.clone();
         for (int row = 0; row < SIZE; row++) {
             int[] newRow = mergeRow(board[row]);
             board[row] = newRow;
-            }
+        }
         // Spawn a new tile after each move only if the rows are modified
-        if(Arrays.deepEquals(copyboard, board)) {
+        if(!Arrays.deepEquals(copyboard, board)) {
             spawnTile();
         }
     }
 
     public void moveRight() {
+        int[][] copyboard = board.clone();
         // Reverse rows, apply mergeRow(), then reverse back
         for (int row = 0; row < SIZE; row++) {
             // Reverse the row
@@ -96,8 +99,10 @@ public class GameLogic {
             // Reverse the row back and update the board
             board[row] = reverseArray(mergedRow);
         }
-        // Spawn a new tile after making a move
-        spawnTile();
+        // Spawn a new tile after making a move if tiles merged or at least slid
+        if(!Arrays.deepEquals(copyboard, board)) {
+            spawnTile();
+        }
     }
 
     public void moveUp() {
@@ -108,9 +113,11 @@ public class GameLogic {
     }
 
     public void moveDown() {
+
         transposeMatrix();
         moveRight();
-        transposeMatrix();    }
+        transposeMatrix();
+    }
 
     public int[][] getBoard() {
         return board;

@@ -10,7 +10,7 @@ public class Controller2048 {
     private Label game;
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void gameInit() {
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setGridLinesVisible(true);  // Optional, shows grid lines for clarity

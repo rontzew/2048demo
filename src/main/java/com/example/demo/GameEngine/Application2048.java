@@ -2,16 +2,17 @@ package com.example.demo.GameEngine;
 
 import com.example.demo.GameLogic.GameLogic;
 import com.example.demo.GameLogic.GameOverCheck;
+import com.example.demo.Animations.Animations;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Application2048 extends Application {
     private GameLogic game;
-    private GameOverCheck check = new GameOverCheck();
     private GridPane grid;
 
 
@@ -71,21 +72,50 @@ public class Application2048 extends Application {
         int[][] board = game.getBoard();
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 4; col++) {
-                Label tile = new Label(board[row][col] == 0 ? "" : String.valueOf(board[row][col]));
-                tile.setMinSize(100, 100);
-                tile.setStyle(getStyleByNumber(board[row][col]));
-                tile.setAlignment(Pos.CENTER);
-                grid.add(tile, col, row);
+                Label newTile = new Label(board[row][col] == 0 ? "" : String.valueOf(board[row][col]));
+                newTile.setMinSize(100, 100);
+                newTile.setStyle(getStyleByNumber(board[row][col]));
+                newTile.setAlignment(Pos.CENTER);
+                grid.add(newTile, col, row);
+
+                if (board[row][col] == 0) {
+                    Animations.animateNewTile(newTile);    // New tile fade-in
+                }
+
+
+                // else if (/* logic to check if the tile was merged */) {
+                    // Tile merge animation
+                    //Animations.animateTileMerge(tile);
+                //} //else if (/* logic to check if the tile was moved */) {
+                    // Tile move animation
+                    //Animations.animateTileMovement(tile, /* fromX */, /* fromY */, /* toX */, /* toY */);
+
             }
+
+
         }
     }
 
     private void checkGameOverOrWin() {
-        if (check.isGameWon()) {
+        if (GameOverCheck.isGameWon()) {
             System.out.println("You win!");
-        } else if (check.isGameOver()) {
-            System.out.println("Game over!");
+        } else if (GameOverCheck.isGameOver()) {
+            gameOver();
         }
+    }
+
+    private void gameOver() {
+        // Show a dialog or message indicating the game is over
+        System.out.println("Game Over! No moves possible.");
+
+        //display a message using a JavaFX alert box
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText(null);
+        alert.setContentText("No more moves possible!");
+        alert.showAndWait();
+
+        //TBD: logic to stop the game or reset the board
     }
 
     public static void main(String[] args) {
