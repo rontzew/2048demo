@@ -2,20 +2,26 @@
 
  A small game to practice use of JavaFX. Why? Just out of curiosity to see how it works.
 
- At this point the game is a skeleton, as it is able to do the math and the update to the board. Updates to make to this game in the future:
+   At this point the game is a skeleton, as it is able to do the math and the update to the board. 
+  
 
--fix some game logic where more than one addition operation is done (ex, on a row or column you have the following tiles: 4 2 2. The game adds the twos, then sees that there are now two 4s, and adds them as well with the initial user input);
+ Fixed issues with last update:
 
--fix some game logic where it will add tiles even though the previous command produced no change (normally new tiles should appear only when tiles are added to each other and/or tiles are moved);
+   -fixed some game logic where more than one addition operation is done (ex, on a row or column you have the following tiles: 4 2 2. The game adds the twos, then sees that there are now two 4s, and adds them as well with the initial user input);
 
--implement the game over condition when all tiles are occupied and and there is no addition possible on the board;
 
--implement the game winning condition when you obtain the 2048 tile;
+Updates to make to this game in the future:
 
--implement a score system to track current / high score;
+  -fix some game logic where it will add tiles even though the previous command produced no change (normally new tiles should appear only when tiles are added to each other and/or tiles are moved);
 
--add animations to the game for better following of the tiles (and visual aspect as well);
+  -implement the game over condition when all tiles are occupied and and there is no addition possible on the board;
 
--add new game, restart, start buttons;
+  -implement the game winning condition when you obtain the 2048 tile;
 
--for sure I will come up with many other ideas, let me see these ones through to the end though.
+  -implement a score system to track current / high score;
+
+  -add animations to the game for better following of the tiles (and visual aspect as well);
+
+  -add new game, restart, start buttons;
+
+  -for sure I will come up with many other ideas, let me see these ones through to the end though.
