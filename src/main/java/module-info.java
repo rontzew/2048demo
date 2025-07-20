@@ -5,9 +5,14 @@ module com.example.demo {
     requires com.dlsc.formsfx;
     requires com.almasb.fxgl.all;
 
-    opens com.example.demo to javafx.fxml;
-    exports com.example.demo.GameLogic;
-    exports com.example.demo.GameEngine;
-    opens com.example.demo.GameEngine to javafx.fxml;
-    opens com.example.demo.GameLogic to javafx.fxml;
+    // Export the base package to both javafx.fxml and javafx.graphics
+    exports com.example.game2048 to javafx.fxml, javafx.graphics;
+
+    // Export other subpackages
+    exports com.example.game2048.GameLogic;
+    exports com.example.game2048.util;
+
+    // Allow reflective access to specific packages for FXML loading
+    opens com.example.game2048.util to javafx.fxml;
+    opens com.example.game2048.GameLogic to javafx.fxml;
 }
